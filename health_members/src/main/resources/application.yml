@@ -1,0 +1,59 @@
+server:
+  port: 8004
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/health?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 123456
+  # 服务逻辑名称
+  application:
+    name: health-members
+  #        namespace: 4d109a4d-f34d-4e86-9e39-c2d36db24b00
+
+  #---- redis配置  ----#
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#    jedis:
+#      pool:
+#        max-active: 20
+#        max-idle: 10
+#        max-wait: -1
+#        min-idle: 5
+#    lettuce:
+#      pool:
+#        max-active: 20
+#        max-idle: 10
+#        min-idle: 5
+#        服务注册
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1001/eureka/
+
+
+feign:
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-type: text/html,application/xml,application/json
+      min-request-size: 1024
+    response:
+      enabled: true
